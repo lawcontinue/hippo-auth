@@ -1,0 +1,34 @@
+{
+  "verified_at": "2026-05-12T00:41:57Z",
+  "implementation": "hippo-auth (lawcontinue/hippo-auth)",
+  "algorithm": "ed25519 + rfc9421-http-message-signatures",
+  "keypair_consistent": true,
+  "vectors_verified": "3/3",
+  "results": [
+    {
+      "vector": 1,
+      "description": "Basic A2A message with tag=a2a-message",
+      "body_length": 57,
+      "digest_algorithm": "sha-256",
+      "has_tag": true,
+      "byte_match": true
+    },
+    {
+      "vector": 2,
+      "description": "Agent card retrieval without tag (backward compat)",
+      "body_length": 0,
+      "digest_algorithm": "sha-256",
+      "has_tag": false,
+      "byte_match": true
+    },
+    {
+      "vector": 3,
+      "description": "Large body >=4KB with SHA-512 digest",
+      "body_length": 4210,
+      "digest_algorithm": "sha-512",
+      "has_tag": true,
+      "byte_match": true
+    }
+  ],
+  "conclusion": "All vectors produce deterministic, verifiable signatures. Ready for cross-implementation byte-match against envoys-rfc9421 and other RFC 9421 implementations."
+}
