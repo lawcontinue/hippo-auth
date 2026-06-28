@@ -99,17 +99,17 @@ class SignatureParams:
         lines: list[str] = []
         for comp in self.components:
             if comp == "@method":
-                lines.append(f'@method: {method.upper()}')
+                lines.append(f'"@method": {method.upper()}')
             elif comp == "@path":
-                lines.append(f'@path: {path}')
+                lines.append(f'"@path": {path}')
             elif comp == "content-digest":
-                lines.append(f'content-digest: {digest_value}')
+                lines.append(f'"content-digest": {digest_value}')
             elif comp == "created":
-                lines.append(f'created: {self.created}')
+                lines.append(f'"created": {self.created}')
             elif comp == "nonce":
-                lines.append(f'nonce: {self.nonce}')
+                lines.append(f'"nonce": {self.nonce}')
             elif comp == "keyid":
-                lines.append(f'keyid: {self.keyid}')
+                lines.append(f'"keyid": {self.keyid}')
             else:
                 logger.warning("Unknown signature component: %r", comp)
                 raise ValueError(f"Unknown signature component: {comp!r}")
@@ -125,7 +125,7 @@ class SignatureParams:
         ]
         if self.tag:
             param_items.append(f'tag="{_sf_escape(self.tag)}"')
-        lines.append("@signature-params: " + ";".join(param_items))
+        lines.append('"@signature-params": ' + ";".join(param_items))
         return "\n".join(lines)
 
 
